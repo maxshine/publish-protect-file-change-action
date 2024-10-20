@@ -1,0 +1,39 @@
+on:
+  workflow_dispatch:
+    inputs:
+      upstream_ref:
+        description: 'a valid git reference of upstream repository'
+        required: true
+
+jobs:
+  sync_upstream_release:
+    runs-on: ubuntu-latest
+    name: A job to synchronize released action from upstream
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        id: checkout-downstream
+        with:
+          ref: main
+      - uses: actions/checkout@v4
+        id: checkout-upstream-repository
+        with:
+          repository: maxshine/personal-continuous-integrations
+          ref: ${{ inputs.upstream_ref }}
+          path: upstream_checkout_path
+      - id: prepare-sync-pull-request 
+        env:
+          ACTING_USER: {{ github.actor }}
+          UPSTREAM_REF: {{ input.upstream_ref }}
+        run: |
+          [ ${ACTING_USERR} != "maxshine" ] && exit 0
+          git config user.name "Ryan Gao"
+          git config user.email "ryangao-au@outlook.com"
+          work_branch="sync/upstream-${UPSTREAM_REF}-`date +%Y%m%d`"
+          git checkout -b "${work_branch}"
+          cp -rp upstream_checkout_path/.github/actions/write-protection-docker-action/* .
+          rm -rf upstream_checkout_path
+          git add .
+          git status
+
