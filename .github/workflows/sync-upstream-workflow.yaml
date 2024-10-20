@@ -30,7 +30,8 @@ jobs:
           [ ${ACTING_USERR} != "maxshine" ] && exit 0
           git config user.name "Ryan Gao"
           git config user.email "ryangao-au@outlook.com"
-          git checkout -b "sync/upstream-${UPSTREAM_REF}-`date +%Y%m%d`"
+          work_branch="sync/upstream-${UPSTREAM_REF}-`date +%Y%m%d`"
+          git checkout -b "${work_branch}"
           cp -rp upstream_checkout_path/.github/actions/write-protection-docker-action/* .
           rm -rf upstream_checkout_path
           git add .
