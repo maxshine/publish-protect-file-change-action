@@ -27,6 +27,7 @@ jobs:
         env:
           ACTING_USER: ${{ github.actor }}
           UPSTREAM_REF: ${{ inputs.upstream_ref }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           [ ${ACTING_USER} != "maxshine" ] && exit 0
           git config user.name "Ryan Gao"
