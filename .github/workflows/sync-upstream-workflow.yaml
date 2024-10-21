@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to synchronize released action from upstream
     permissions:
-      contents: read
+      pull-request: write
     steps:
       - uses: actions/checkout@v4
         id: checkout-downstream
