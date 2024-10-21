@@ -45,7 +45,7 @@ jobs:
           echo 'Submited by @${{ github.actor }} ' >> body.md
           gh pr create \
           --title "Action Release  Update - release=${{ inputs.upstream_ref }}" \
-          --assignee maxshine
+          --assignee maxshine \
           --body-file body.md \
           --base main \
           --head ${work_branch} \
