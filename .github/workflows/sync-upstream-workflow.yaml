@@ -25,7 +25,7 @@ jobs:
       - id: prepare-sync-pull-request 
         env:
           ACTING_USER: ${{ github.actor }}
-          UPSTREAM_REF: ${{ input.upstream_ref }}
+          UPSTREAM_REF: ${{ inputs.upstream_ref }}
         run: |
           [ ${ACTING_USER} != "maxshine" ] && exit 0
           git config user.name "Ryan Gao"
