@@ -35,5 +35,17 @@ jobs:
           cp -rp upstream_checkout_path/.github/actions/write-protection-docker-action/* .
           rm -rf upstream_checkout_path
           git add .
-          git status
+          git commit -am 'updating action from upstream ${{ inputs.upstream_ref }}'
+          git push --set-upstream origin ${work_branch}
+          touch body.md
+          echo 'Synchronize action from upstream version ${{ inputs.upstream_ref }}' >> body.md
+          echo '' >> body.md
+          echo 'Submited by @${{ github.actor }} ' >> body.md
+          gh pr create \
+          --title "Action Release  Update - release=${{ inputs.upstream_ref }}" \
+          --assignee maxshine
+          --body-file body.md \
+          --base main \
+          --head ${work_branch} \
+          --label enhancement
 
