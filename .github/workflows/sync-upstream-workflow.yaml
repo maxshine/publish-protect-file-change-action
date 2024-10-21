@@ -11,7 +11,7 @@ jobs:
     name: A job to synchronize released action from upstream
     permissions:
       pull-requests: write
-      content: write
+      contents: write
     steps:
       - uses: actions/checkout@v4
         id: checkout-downstream
