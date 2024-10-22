@@ -36,6 +36,7 @@ jobs:
           git checkout -b "${work_branch}"
           cp -rp upstream_checkout_path/.github/actions/write-protection-docker-action/* .
           rm -rf upstream_checkout_path
+          rm CHANGELOG.md
           git add .
           git commit -am 'updating action from upstream ${{ inputs.upstream_ref }}'
           git push --set-upstream origin ${work_branch}
