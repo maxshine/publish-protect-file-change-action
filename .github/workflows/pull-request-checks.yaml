@@ -13,7 +13,7 @@ jobs:
           fetch-depth: 0
       - name: Check write-protection files in the pull request
         id: check-protected-files
-        uses: maxshine/personal-continuous-integrations/.github/actions/write-protection-docker-action@v1.3.2
+        uses: maxshine/personal-continuous-integrations/.github/actions/write-protection-docker-action@v1.4.1
         with:
           acting-user: ${{ github.actor }}
           merge-ref: origin/${{ github.event.pull_request.base.ref }}
