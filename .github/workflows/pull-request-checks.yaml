@@ -1,4 +1,4 @@
-name: PR Critical Files Change Checks
+name: Pull Request Critical Files Changes Check
 
 on:
   pull_request:
