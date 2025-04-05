@@ -1,3 +1,5 @@
+name: PR Critical Files Change Checks
+
 on:
   pull_request:
     branches: [ "**" ]
