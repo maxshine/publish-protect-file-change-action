@@ -1,3 +1,5 @@
+name: Synchronize From Upstream Repository
+
 on:
   workflow_dispatch:
     inputs:
