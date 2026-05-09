@@ -6,6 +6,11 @@ on:
       upstream_ref:
         description: 'a valid git reference of upstream repository'
         required: true
+      base_ref:
+        description: 'a valid git reference of this repository as the base'
+        required: true
+        default: 'main'
+      
 
 jobs:
   sync_upstream_release:
@@ -18,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
         id: checkout-downstream
         with:
-          ref: main
+          ref: ${{ inputs.base_ref }}
       - uses: actions/checkout@v4
         id: checkout-upstream-repository
         with:
