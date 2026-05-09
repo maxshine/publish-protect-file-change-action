@@ -10,6 +10,10 @@ on:
         description: 'a valid git reference of this repository as the base'
         required: true
         default: 'main'
+      pr_target_ref:
+        description: 'a valid git reference of this repository as the PR target'
+        required: true
+        default: 'main'
       
 
 jobs:
@@ -55,7 +59,7 @@ jobs:
           --title "Action Release  Update - release=${{ inputs.upstream_ref }}" \
           --assignee maxshine \
           --body-file body.md \
-          --base main \
+          --base ${{ inputs.pr_target_ref }} \
           --head ${work_branch} \
           --label enhancement
 
