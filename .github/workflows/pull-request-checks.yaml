@@ -9,13 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to check the pull request
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
       - name: Check write-protection files in the pull request
         id: check-protected-files
-        uses: maxshine/personal-continuous-integrations/.github/actions/write-protection-docker-action@v1.4.3
+        uses: maxshine/personal-continuous-integrations/.github/actions/write-protection-docker-action@v1
         with:
           acting-user: ${{ github.actor }}
           merge-ref: origin/${{ github.event.pull_request.base.ref }}

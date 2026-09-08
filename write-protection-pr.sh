@@ -10,6 +10,8 @@
 # -----------------------------------------------------------------------------
 #   01/09/2024     Ryan, Gao       Created this script
 #   03/09/2024     Ryan, Gao       Add more cmdline options preceding env
+#   13/11/2025     Ryan, Gao       Add more debugging output
+#   06/09/2026     Ryan, Gao       Fix github-action[bot] user check
 #
 # Inputs:
 #   Environmental Variables:
@@ -56,7 +58,7 @@ function is_admin_user() {
   OIFS=$IFS
   IFS=";"
   for admin in ${ADMINISTRATIVE_USERS}; do
-    if [[ $1 == $admin ]]; then
+    if [[ "$1" == "$admin" ]]; then
       IFS=$OIFS
       return 1
     fi
@@ -135,6 +137,11 @@ while :; do
   ;;
   esac
 done
+printf "GITHUB_SOURCE_REF=%s\n" ${GITHUB_SOURCE_REF}
+printf "GITHUB_TARGET_REF=%s\n" ${GITHUB_TARGET_REF}
+printf "GITHUB_ACTING_USER=%s\n" ${GITHUB_ACTING_USER}
+printf "IS_FORKED_PULL_REQUEST=%s\n" ${IS_FORKED_PULL_REQUEST}
+printf "ADMINISTRATIVE_USERS=%s\n" ${ADMINISTRATIVE_USERS}
 printf "admin_list=%s\n" $ADMINISTRATIVE_USERS
 
 # Check GITHUB runtime
