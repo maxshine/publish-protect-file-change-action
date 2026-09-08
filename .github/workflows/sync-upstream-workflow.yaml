@@ -24,11 +24,11 @@ jobs:
       pull-requests: write
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         id: checkout-downstream
         with:
           ref: ${{ inputs.base_ref }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         id: checkout-upstream-repository
         with:
           repository: maxshine/personal-continuous-integrations
